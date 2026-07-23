@@ -20,7 +20,7 @@ Thread(target=run_flask, daemon=True).start()
 
 # --- 2. Configurações do Bot do Telegram ---
 # O token pode vir das variáveis de ambiente do Back4App ou diretamente aqui
-API_TOKEN = os.environ.get("BOT_TOKEN", "8930786040:AAHb1Aoj55GpLfzZy2Gn8I4KT62zUIt693o")
+API_TOKEN = os.environ.get("BOT_TOKEN", "8930786040:AAFG2ChKQ1zQ-f98StKDAyiaGzwl8Hmko10")
 bot = telebot.TeleBot(API_TOKEN)
 
 # Seu Link de Afiliado Direct
