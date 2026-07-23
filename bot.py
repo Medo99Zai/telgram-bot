@@ -1,14 +1,32 @@
+import os
+from threading import Thread
+from flask import Flask
 import telebot
 from telebot import types
 
-# ✅ L-Token l-Jdid dyalk m-7tout mriql
-API_TOKEN = '8930786040:AAHb1Aoj55GpLfzZy2Gn8I4KT62zUIt693o'
+# --- 1. Servidor Web Flask para o Health Check do Back4App ---
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot is alive!"
+
+def run_flask():
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host='0.0.0.0', port=port)
+
+# Executa o servidor Flask em segundo plano
+Thread(target=run_flask, daemon=True).start()
+
+# --- 2. Configurações do Bot do Telegram ---
+# O token pode vir das variáveis de ambiente do Back4App ou diretamente aqui
+API_TOKEN = os.environ.get("BOT_TOKEN", "8930786040:AAHb1Aoj55GpLfzZy2Gn8I4KT62zUIt693o")
 bot = telebot.TeleBot(API_TOKEN)
 
-# ⚠️ Hna 7et l-link dyal l-affiliate dyalk d iDrive direct
+# Seu Link de Afiliado Direct
 XM_LINK = "https://affs.click/8Raj3"
 
-# --- LES ÉTAPES D L-FUNNEL (High Conversion) ---
+# --- 3. Textos do Funnel ---
 
 STEP1_TEXT = (
     "🚀 **Quer ganhar dinheiro enquanto dorme?**\n\n"
@@ -30,7 +48,7 @@ STEP3_TEXT = (
     "Clique no botão abaixo para criar sua conta segura e ativar o modo automático: 👇"
 )
 
-# --- TELEGRAM HANDLERS ---
+# --- 4. Handlers do Telegram ---
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
