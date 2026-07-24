@@ -21,34 +21,30 @@ XM_LINK = 'https://affs.click/8Raj3'
 
 bot = telebot.TeleBot(API_TOKEN)
 
-# 3. نصوص الفانل بالبرتغالية (تتناسب مع الترافيك البرازيلي)
+# 3. نصوص قصيرة، محفزة، واحترافية (Pro) بدون كدوب
 STEP1_TEXT = (
-    "🚨 **ATENÇÃO: Vagas extremamente limitadas para hoje!**\n\n"
-    "Trabalhar 8 horas por dia para enriquecer os outros já era.\n\n"
-    "Agora, existe um sistema 100% automático que faz o mercado financeiro trabalhar para você enquanto dorme, sem precisar de experiência ou análises complexas.\n\n"
-    "🔥 **Aviso:** Abrimos **apenas 10 vagas hoje** para evitar sobrecarga no servidor, e sua vaga pode expirar.\n\n"
-    "Quer ver como funciona em 30 segundos antes que feche? 👇"
+    "⚡ **Acesso Liberado!**\n\n"
+    "Você não precisa entender de gráficos para ver resultados no mercado. O sistema executa as operações de forma automatizada.\n\n"
+    "👇 Clique abaixo para ver como configurar o seu:"
 )
 
 STEP2_TEXT = (
-    "⚡ **Passo 2: Simplicidade Absoluta (Zero Experiência)**\n\n"
-    "Você não precisa entender nada de trading! Neste sistema, você simplesmente **copia automaticamente** as operações dos maiores especialistas.\n\n"
-    "📈 Eles analisam e operam.\n"
-    "💰 Os lucros vão direto para a sua conta.\n\n"
-    "Pronto para garantir sua vaga final? 👇"
+    "📈 **Prقtico e Direto ao Ponto**\n\n"
+    "Basta conectar sua conta para seguir as estratégias validadas. Sem complicações técnicas.\n\n"
+    "👇 Toque no botão para ir à etapa final:"
 )
 
 STEP3_TEXT = (
-    "🔥 **Parabéns! Sua vaga foi aprovada temporariamente.**\n\n"
-    "⏱️ **Atenção:** O sistema vai fechar o acesso em **15 minutos** devido à alta demanda.\n\n"
-    "Seu link direto está pronto. Clique no botão abaixo para criar sua conta e ativar o sistema automático agora mesmo: 👇"
+    "🎯 **Última Etapa**\n\n"
+    "O ambiente de ativação está pronto. Crie sua conta agora e comece a operar de forma automatizada:\n\n"
+    "👇 Clique no botão oficial abaixo:"
 )
 
 # 4. Handlers ديال التليغرام (إرسال رسالة جديدة بإشعار في كل إطاب)
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     markup = types.InlineKeyboardMarkup()
-    btn = types.InlineKeyboardButton(text="👉 SIM! QUERO VER", callback_data="go_2")
+    btn = types.InlineKeyboardButton(text="👉 CONTINUAR", callback_data="go_2")
     markup.add(btn)
     bot.send_message(message.chat.id, STEP1_TEXT, parse_mode="Markdown", reply_markup=markup)
 
@@ -56,12 +52,12 @@ def send_welcome(message):
 def callback_inline(call):
     if call.data == "go_2":
         markup = types.InlineKeyboardMarkup()
-        btn = types.InlineKeyboardButton(text="🚀 QUERO COPIAR AGORA", callback_data="go_3")
+        btn = types.InlineKeyboardButton(text="🚀 VER PASSO FINAL", callback_data="go_3")
         markup.add(btn)
         
         # إرسال ميساج جديد مع Notification جديدة
         bot.send_message(chat_id=call.message.chat.id, 
-                         text=STEP2_TEXT, 
+                         text=STEP2_STEP := STEP2_TEXT, 
                          parse_mode="Markdown", 
                          reply_markup=markup)
         
@@ -73,7 +69,7 @@ def callback_inline(call):
                               
     elif call.data == "go_3":
         markup = types.InlineKeyboardMarkup()
-        btn_final = types.InlineKeyboardButton(text="💰 ATIVAR SISTEMA AUTOMÁTICO", url=XM_LINK)
+        btn_final = types.InlineKeyboardButton(text="💰 ATIVAR CONTA AGORA", url=XM_LINK)
         markup.add(btn_final)
         
         # إرسال الميساج النهائي برابط الإفلييت
