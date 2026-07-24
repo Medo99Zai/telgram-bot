@@ -21,33 +21,32 @@ XM_LINK = 'https://affs.click/8Raj3'
 
 bot = telebot.TeleBot(API_TOKEN)
 
-# 3. النصوص المحفزة، اللي كاتبيع الوهم وتجيب الكليكات بأقوى إيموجيز (Top 1)
+# 3. نصوص محفزة باعتدال، بروفيسيونال، وكتجيب الكليكات بنكهة واقعية
 STEP1_TEXT = (
-    "🚨 **ATENÇÃO ABSOLUTA! ISSO VAI MUDAR SUA VIDA HOJE!** 👑\n\n"
-    "Chega de ser escravo do sistema e trabalhar 8 horas por dia para deixar os outros ricos! 🛑💸\n\n"
-    "🔥 **Descubra o robô mágico e lendário** que gera milhares de dólares no mercado financeiro enquanto você dorme na sua cama, sem experiência e sem nenhum esforço! 🤖💰\n\n"
-    "⚠️ **Vagas limitadas e explosivas:** A porta vai fechar hoje para evitar vazamentos! ⚡\n\n"
-    "👇 **Clique no botão abaixo para começar agora:**"
+    "⚡ **Oportunidade Única no Mercado!**\n\n"
+    "Cansado de trocar seu tempo por pouco dinheiro? Descubra como o sistema automatizado faz o trabalho pesado por você no mercado financeiro.\n\n"
+    "🔥 Sem precisar de experiência prévia ou análises chatas.\n\n"
+    "👇 **Toque no botão abaixo para ver os detalhes:**"
 )
 
 STEP2_TEXT = (
-    "⚡ **VOCÊ ESTÁ A UM PASSO DA RIQUEZA FÁCIL!** 💎\n\n"
-    "O sistema automático mais insano do mercado vai assumir o controle total da sua conta agora. 🚀📈\n\n"
-    "💵 Seus lucros vão começar a cair de forma automática e descontrolada a cada hora. 🎰✨\n\n"
-    "👇 **Clique no botão para abrir o cofre secreto:**"
+    "📈 **Praticidade e Resultados Reais**\n\n"
+    "O robô executa as estratégias validadas diretamente na sua conta, de forma 100% automática.\n\n"
+    "⏱️ O processo leva menos de um minuto para configurar.\n\n"
+    "👇 **Clique para avançar para a última etapa:**"
 )
 
 STEP3_TEXT = (
-    "🎯 **PARABÉNS! SUA VAGA DE OURO FOI APROVADA!** 🏆\n\n"
-    "⏱️ **ALerta Vermelho:** O sistema vai deletar seu acesso em **10 minutos** por excesso de acessos simultâneos! ⚠️🔥\n\n"
-    "🔗 O link oficial e definitivo está pronto. Clique no botão abaixo e ative o modo milionário: 👇"
+    "🎯 **Tudo Pronto para Começar!**\n\n"
+    "O seu acesso exclusivo está liberado. Crie sua conta agora e ative o sistema automático:\n\n"
+    "👇 **Clique no botão oficial abaixo:**"
 )
 
 # 4. Handlers ديال التليغرام (إرسال رسالة جديدة بإشعار في كل إطاب)
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     markup = types.InlineKeyboardMarkup()
-    btn = types.InlineKeyboardButton(text="🔥 [ QUERO FICAR RICO AGORA! ] 🚀", callback_data="go_2")
+    btn = types.InlineKeyboardButton(text="👉 QUERO VER COMO FUNCIONA", callback_data="go_2")
     markup.add(btn)
     bot.send_message(message.chat.id, STEP1_TEXT, parse_mode="Markdown", reply_markup=markup)
 
@@ -55,7 +54,7 @@ def send_welcome(message):
 def callback_inline(call):
     if call.data == "go_2":
         markup = types.InlineKeyboardMarkup()
-        btn = types.InlineKeyboardButton(text="⚡ [ ABRIR O COFINHO SECRETO 💸 ] 🔓", callback_data="go_3")
+        btn = types.InlineKeyboardButton(text="🚀 VER ETAPA FINAL", callback_data="go_3")
         markup.add(btn)
         
         # إرسال ميساج جديد مع Notification جديدة
@@ -72,7 +71,7 @@ def callback_inline(call):
                               
     elif call.data == "go_3":
         markup = types.InlineKeyboardMarkup()
-        btn_final = types.InlineKeyboardButton(text="💰 [ ATIVAR SISTEMA MILIONÁRIO 🚀 ] 🏆", url=XM_LINK)
+        btn_final = types.InlineKeyboardButton(text="💰 ATIVAR SISTEMA AGORA", url=XM_LINK)
         markup.add(btn_final)
         
         # إرسال الميساج النهائي برابط الإفلييت
