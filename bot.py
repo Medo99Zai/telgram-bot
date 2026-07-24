@@ -4,12 +4,12 @@ from flask import Flask
 import telebot
 from telebot import types
 
-# 1. Web Server خفيف لـ Back4App Health Check
+# 1. إعداد سيرفر Flask لـ Back4App Health Check
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "Bot is alive!"
+    return "Bot is alive and running!"
 
 def run_flask():
     port = int(os.environ.get("PORT", 8080))
@@ -21,7 +21,7 @@ XM_LINK = 'https://affs.click/8Raj3'
 
 bot = telebot.TeleBot(API_TOKEN)
 
-# 3. نصوص قصيرة، محفزة، واحترافية (Pro) بدون كدوب
+# 3. النصوص الاحترافية والقصير (Pro)
 STEP1_TEXT = (
     "⚡ **Acesso Liberado!**\n\n"
     "Você não precisa entender de gráficos para ver resultados no mercado. O sistema executa as operações de forma automatizada.\n\n"
@@ -29,18 +29,18 @@ STEP1_TEXT = (
 )
 
 STEP2_TEXT = (
-    "📈 **Prقtico e Direto ao Ponto**\n\n"
+    "📈 **Prático e Direto ao Ponto**\n\n"
     "Basta conectar sua conta para seguir as estratégias validadas. Sem complicações técnicas.\n\n"
     "👇 Toque no botão para ir à etapa final:"
 )
 
 STEP3_TEXT = (
     "🎯 **Última Etapa**\n\n"
-    "O ambiente de ativação está pronto. Crie sua conta agora e comece a operar de forma automatizada:\n\n"
+    "O ambiente de ativação está pronto. Crie sua conta agora و comece a operar de forma automatizada:\n\n"
     "👇 Clique no botão oficial abaixo:"
 )
 
-# 4. Handlers ديال التليغرام (إرسال رسالة جديدة بإشعار في كل إطاب)
+# 4. Handlers ديال التليغرام
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
     markup = types.InlineKeyboardMarkup()
@@ -55,13 +55,11 @@ def callback_inline(call):
         btn = types.InlineKeyboardButton(text="🚀 VER PASSO FINAL", callback_data="go_3")
         markup.add(btn)
         
-        # إرسال ميساج جديد مع Notification جديدة
         bot.send_message(chat_id=call.message.chat.id, 
-                         text=STEP2_STEP := STEP2_TEXT, 
+                         text=STEP2_TEXT, 
                          parse_mode="Markdown", 
                          reply_markup=markup)
         
-        # إزالة الزر القديم
         try:
             bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=call.message.message_id, reply_markup=None)
         except Exception:
@@ -72,25 +70,25 @@ def callback_inline(call):
         btn_final = types.InlineKeyboardButton(text="💰 ATIVAR CONTA AGORA", url=XM_LINK)
         markup.add(btn_final)
         
-        # إرسال الميساج النهائي برابط الإفلييت
         bot.send_message(chat_id=call.message.chat.id, 
                          text=STEP3_TEXT, 
                          parse_mode="Markdown", 
                          reply_markup=markup)
                          
-        # إزالة الأزرار القديمة
         try:
             bot.edit_message_reply_markup(chat_id=call.message.chat.id, message_id=call.message.message_id, reply_markup=None)
         except Exception:
             pass
 
-# 5. تشغيل السيرفر والبوت
+# 5. التشغيل المتوازي (Flask + Telegram Bot)
 if __name__ == '__main__':
+    # تشغيل Flask في Background Thread
     flask_thread = Thread(target=run_flask)
     flask_thread.daemon = True
     flask_thread.start()
     
     print("Starting Telegram Bot Polling...")
+    # تشغيل البوت الأساسي
     while True:
         try:
             bot.infinity_polling(skip_pending=True, timeout=60, long_polling_timeout=60)
