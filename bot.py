@@ -24,11 +24,11 @@ bot = telebot.TeleBot(API_TOKEN)
 
 # 3. Copywriting ghadi ykhlli l-nas f Brasil fihom l-foudoul (Curiosity Hook)
 STEP1_TEXT = (
-    "⚡ **Oportunidade Única de Renda Automática!**\n\n"
-    "Cansado de passar horas analisando gráficos ou perdendo dinheiro? Descubra como o nosso sistema inteligente faz todo o trabalho pesado por você.\n\n"
-    "🔥 100% no piloto automático.\n"
-    "🔥 Sem precisar de experiência prévia.\n\n"
-    "👇 **Toque no botão abaixo para ver como funciona:**"
+    "🚀 *Quer ganhar dinheiro enquanto dorme?*\n\n"
+    "Chega de trabalhar 8 horas por dia para enriquecer os outros. "
+    "Existe uma forma 100% automática de fazer o mercado financeiro trabalhar para você.\n\n"
+    "⚠️ *Apenas 20 vagas liberadas para hoje!*\n\n"
+    "Quer ver como funciona em 30 segundos?"
 )
 
 STEP2_TEXT = (
